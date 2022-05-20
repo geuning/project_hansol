@@ -9,4 +9,6 @@ import java.util.List;
 public interface CompanyMapper {
 
     List<Company> findAllCompanies();
+
+    List<Company> findCompanyNames(String companyName);
 }
