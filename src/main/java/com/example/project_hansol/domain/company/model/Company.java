@@ -1,18 +1,28 @@
 package com.example.project_hansol.domain.company.model;
 
+import com.example.project_hansol.domain.base.BaseModel;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
-public class Company {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Company extends BaseModel {
 
     private Long companyId;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
     private String companyName;
-    private Boolean isDeleted;
+
+    @Builder
+    public Company(String companyName){
+        this.companyName = companyName;
+    }
+
+    public static Company createCompany(Company company){
+        return Company.builder()
+                .companyName(company.getCompanyName())
+                .build();
+    }
+
 
 }

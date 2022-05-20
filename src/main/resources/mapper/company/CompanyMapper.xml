@@ -5,17 +5,16 @@
 
 <mapper namespace="com.example.project_hansol.domain.company.repository.CompanyMapper">
 
-    <select id="findAllCompanies" resultType="com.example.project_hansol.domain.company.model.Company">
+    <select id="findAllCompaniesWithCompanyName" resultType="com.example.project_hansol.domain.company.model.Company">
         select *
         from   company
-        where is_deleted = '0'
+        where  company_name LIKE CONCAT('%',#{name},'%')
+        and    is_deleted = '0'
     </select>
 
-    <select id="findCompanyNames" resultType="com.example.project_hansol.domain.company.model.Company">
-        select *
-        from   company
-        where company_name
-        LIKE CONCAT('%',#{name},'%')
-    </select>
+    <insert id="registerCompany">
+        insert into company(create_time, update_time, company_name, is_deleted)
+        values(NOW(), NOW(), #{companyName}, 0)
+    </insert>
 
 </mapper>
