@@ -16,12 +16,12 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyMapper companyMapper;
 
     @Override
-    public List<Company> findAllCompanies() {
-        return companyMapper.findAllCompanies();
+    public List<Company> findAllCompaniesWithCompanyName(String companyName){
+        return companyMapper.findAllCompaniesWithCompanyName(companyName);
     }
 
     @Override
-    public List<Company> findCompanyNames(String companyName){
-        return companyMapper.findCompanyNames(companyName);
+    public void registerCompany(Company company){
+        companyMapper.registerCompany(company);
     }
 }

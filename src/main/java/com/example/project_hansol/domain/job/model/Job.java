@@ -1,18 +1,14 @@
 package com.example.project_hansol.domain.job.model;
 
+import com.example.project_hansol.domain.base.BaseModel;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Builder
-public class Job {
+public class Job extends BaseModel {
 
     private Long jobId;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
     private String jobPosition;
-    private Boolean isDeleted;
 
 }

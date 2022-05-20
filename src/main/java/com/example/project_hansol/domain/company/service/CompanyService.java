@@ -5,9 +5,8 @@ import com.example.project_hansol.domain.company.model.Company;
 import java.util.List;
 
 public interface CompanyService {
+    List<Company> findAllCompaniesWithCompanyName(String companyName);
 
-    List<Company> findAllCompanies();
-
-    List<Company> findCompanyNames(String companyName);
+    void registerCompany(Company company);
 
 }

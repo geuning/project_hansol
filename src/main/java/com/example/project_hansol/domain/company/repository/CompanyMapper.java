@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface CompanyMapper {
 
-    List<Company> findAllCompanies();
+    List<Company> findAllCompaniesWithCompanyName(String companyName);
 
-    List<Company> findCompanyNames(String companyName);
+    void registerCompany(Company company);
 }
