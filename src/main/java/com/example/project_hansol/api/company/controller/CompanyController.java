@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,12 +32,16 @@ public class CompanyController {
         return ResponseEntity.ok(companyDtos);
     }
 
-//    @Operation(summary = "회사 이름 조회", description = "이름으로 회사를 조회합니다.")
-//    @GetMapping
-//    public ResponseEntity<List<CompanyDto.Response>> findCompanyName(
-//            @RequestParam(value = "name", required = false, defaultValue = "") String companyName) {
-//
-//    }
+    @Operation(summary = "회사 이름 조회", description = "이름으로 회사를 조회합니다.")
+    @GetMapping("/names")
+    public ResponseEntity<List<CompanyDto.Response>> findCompanyName(
+            @RequestParam(value = "name", required = false, defaultValue = "") String companyName) {
+        List<Company> companyNames = companyService.findCompanyNames(companyName);
+        List<CompanyDto.Response> companyNameDtos = companyNames.stream().map(company -> CompanyDto.Response.of(company))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(companyNameDtos);
+
+    }
 
 
 

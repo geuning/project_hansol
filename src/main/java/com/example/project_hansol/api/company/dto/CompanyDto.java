@@ -18,7 +18,7 @@ public class CompanyDto {
     @Builder
     public static class Response{
 
-        @Schema(description = "회사 아이디", example = "1")
+        @Schema(description = "회사 아이디", example = "99999")
         private Long companyId;
 
         @Schema(description = "생성 시간")
@@ -27,7 +27,7 @@ public class CompanyDto {
         @Schema(description = "수정 시간")
         private LocalDateTime updateTime;
 
-        @Schema(description = "회사명", example = "PNS")
+        @Schema(description = "회사명", example = "한솔")
         private String companyName;
 
         @Schema(description = "삭제여부", example = "0")

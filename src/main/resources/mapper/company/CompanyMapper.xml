@@ -8,6 +8,14 @@
     <select id="findAllCompanies" resultType="com.example.project_hansol.domain.company.model.Company">
         select *
         from   company
+        where is_deleted = '0'
+    </select>
+
+    <select id="findCompanyNames" resultType="com.example.project_hansol.domain.company.model.Company">
+        select *
+        from   company
+        where company_name
+        LIKE CONCAT('%',#{name},'%')
     </select>
 
 </mapper>

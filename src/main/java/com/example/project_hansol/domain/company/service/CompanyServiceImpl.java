@@ -19,4 +19,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> findAllCompanies() {
         return companyMapper.findAllCompanies();
     }
+
+    @Override
+    public List<Company> findCompanyNames(String companyName){
+        return companyMapper.findCompanyNames(companyName);
+    }
 }
