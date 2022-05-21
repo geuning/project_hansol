@@ -1,7 +1,6 @@
 package com.example.project_hansol.domain.job.service;
 
 
-import com.example.project_hansol.domain.company.model.Company;
 import com.example.project_hansol.domain.job.model.Job;
 import com.example.project_hansol.domain.job.repository.JobMapper;
 import lombok.RequiredArgsConstructor;
