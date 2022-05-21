@@ -16,5 +16,5 @@ public interface JobService {
 
     void deleteJob(Job job);
 
-
+    Job findByJobPosition(String jobPosition);
 }

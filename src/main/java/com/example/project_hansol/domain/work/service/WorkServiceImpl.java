@@ -1,7 +1,6 @@
 package com.example.project_hansol.domain.work.service;
 
 
-import com.example.project_hansol.domain.job.model.Job;
 import com.example.project_hansol.domain.work.model.Work;
 import com.example.project_hansol.domain.work.repository.WorkMapper;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +39,11 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public void deleteWork(Work work){
         workMapper.deleteWork(work);
+    }
+
+    @Override
+    public Work findByWorkCode(String workCode){
+        return workMapper.findByWorkCode(workCode);
     }
 
 
