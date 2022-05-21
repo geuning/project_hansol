@@ -10,5 +10,3 @@ mybatis:
     map-underscore-to-camel-case: true # model프로퍼티 camel case설정
 
   mapper-locations: mapper/**/*.xml # Mybatis mapper 위치 설정
-
-  type-aliases-package: com.example.project_hansol.domain.member.model # 패키지 result type에 명을 생략할 수 있도록 alias설정

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_hansol.domain.job.repository.JobMapper">
+
+    <select id="findAllJobsWithJobPosition" resultType="com.example.project_hansol.domain.job.model.Job">
+        select *
+        from   job
+        where  job_position LIKE CONCAT('%',#{position},'%')
+        and    is_deleted = '0'
+    </select>
+
+    <insert id="registerJob">
+        insert into job(create_time, update_time, job_position, is_deleted)
+        values(NOW(), NOW(), #{jobPosition}, 0)
+    </insert>
+
+    <select id="findByJobId" resultType="com.example.project_hansol.domain.job.model.Job">
+        select *
+        from   job
+        where  job_id = #{jobId}
+        and    is_deleted = '0'
+    </select>
+
+    <update id="updateJob">
+        update job
+        set   update_time = NOW(), job_position = #{jobPosition}
+        where job_id = #{jobId}
+        and   is_deleted = '0'
+    </update>
+
+    <update id="deleteJob">
+        update job
+        set   update_time = NOW(), is_deleted = '1'
+        where job_id = #{jobId}
+    </update>
+
+    <select id="findByJobPosition" resultType="com.example.project_hansol.domain.job.model.Job">
+        select *
+        from   job
+        where  job_position = #{jobPosition}
+        and    is_deleted = '0'
+    </select>
+
+
+
+</mapper>

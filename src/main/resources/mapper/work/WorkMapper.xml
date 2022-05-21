@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_hansol.domain.work.repository.WorkMapper">
+
+    <select id="findAllWorksWithWorkCode" resultType="com.example.project_hansol.domain.work.model.Work">
+        select *
+        from   work
+        where  work_code LIKE CONCAT('%',#{code},'%')
+          and    is_deleted = '0'
+    </select>
+
+    <insert id="registerWork">
+        insert into work(create_time, update_time, work_code, work_title, is_deleted)
+        values(NOW(), NOW(), #{workCode}, #{workTitle}, 0)
+    </insert>
+
+    <select id="findByWorkId" resultType="com.example.project_hansol.domain.work.model.Work">
+        select *
+        from   work
+        where  work_id = #{workId}
+        and    is_deleted = '0'
+    </select>
+
+    <update id="updateWork">
+        update work
+        set   update_time = NOW(), work_code = #{workCode}, work_title = #{workTitle}
+        where work_id = #{workId}
+        and    is_deleted = '0'
+    </update>
+
+    <update id="deleteWork">
+        update work
+        set   update_time = NOW(), is_deleted = '1'
+        where work_id = #{workId}
+    </update>
+
+    <select id="findByWorkCode" resultType="com.example.project_hansol.domain.work.model.Work">
+        select *
+        from   work
+        where  work_code = #{workCode}
+        and    is_deleted = '0'
+    </select>
+
+
+</mapper>
