@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.project_hansol.domain.emp.repository.EmpMapper">
+
+    <select id="findAllEmpsWithEname" resultType="com.example.project_hansol.domain.emp.model.Emp">
+        select *
+        from   emp e
+              ,work w
+              ,job j
+        where  e.ename LIKE CONCAT('%',#{ename},'%')
+        and    e.work_id = w.work_id
+        and    e.job_id = j.job_id
+        and    e.is_deleted = '0'
+        order by e.emp_id
+    </select>
+
+    <insert id="registerEmp">
+        insert into emp(create_time, update_time, ename, detail, phone_number, is_deleted, work_id, job_id)
+        values(NOW(), NOW(), #{ename}, #{detail}, #{phoneNumber}, 0, #{workId}, #{jobId})
+    </insert>
+
+    <select id="findByEmpId" resultType="com.example.project_hansol.domain.emp.model.Emp">
+        select *
+        from   emp
+        where  emp_id = #{empId}
+        and    is_deleted = '0'
+    </select>
+
+    <update id="updateEmp">
+        update emp
+        set   update_time = NOW(), ename = #{ename}, detail = #{detail}, phone_number = #{phoneNumber}
+        where emp_id = #{empId}
+        and   is_deleted = '0'
+    </update>
+
+    <update id="deleteEmp">
+        update emp
+        set   update_time = NOW(), is_deleted = '1'
+        where emp_id = #{empId}
+    </update>
+
+
+</mapper>

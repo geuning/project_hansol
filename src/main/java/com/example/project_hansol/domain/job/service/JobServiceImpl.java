@@ -41,4 +41,9 @@ public class JobServiceImpl implements JobService{
         jobMapper.deleteJob(job);
     }
 
+    @Override
+    public Job findByJobPosition(String jobPosition){
+        return jobMapper.findByJobPosition(jobPosition);
+    }
+
 }

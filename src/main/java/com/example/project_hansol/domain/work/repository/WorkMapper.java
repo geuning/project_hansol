@@ -18,6 +18,7 @@ public interface WorkMapper {
 
     void deleteWork(Work work);
 
+    Work findByWorkCode(String workCode);
 
 
 }

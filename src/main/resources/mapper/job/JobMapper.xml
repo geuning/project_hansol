@@ -21,12 +21,14 @@
         select *
         from   job
         where  job_id = #{jobId}
+        and    is_deleted = '0'
     </select>
 
     <update id="updateJob">
         update job
         set   update_time = NOW(), job_position = #{jobPosition}
         where job_id = #{jobId}
+        and   is_deleted = '0'
     </update>
 
     <update id="deleteJob">
@@ -34,6 +36,14 @@
         set   update_time = NOW(), is_deleted = '1'
         where job_id = #{jobId}
     </update>
+
+    <select id="findByJobPosition" resultType="com.example.project_hansol.domain.job.model.Job">
+        select *
+        from   job
+        where  job_position = #{jobPosition}
+        and    is_deleted = '0'
+    </select>
+
 
 
 </mapper>

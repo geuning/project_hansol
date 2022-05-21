@@ -16,6 +16,5 @@ public interface WorkService {
 
     void deleteWork(Work work);
 
-
-
+    Work findByWorkCode(String workCode);
 }
