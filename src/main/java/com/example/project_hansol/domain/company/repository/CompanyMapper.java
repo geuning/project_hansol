@@ -11,4 +11,8 @@ public interface CompanyMapper {
     List<Company> findAllCompaniesWithCompanyName(String companyName);
 
     void registerCompany(Company company);
+
+    Company findByCompanyId(Long companyId);
+
+    void updateCompany(Company company);
 }

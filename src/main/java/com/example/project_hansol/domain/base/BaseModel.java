@@ -10,8 +10,6 @@ public abstract class BaseModel {
 
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private String createdBy;
-    private String modifiedBy;
     private Boolean isDeleted;
 
 }

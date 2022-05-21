@@ -9,4 +9,7 @@ public interface CompanyService {
 
     void registerCompany(Company company);
 
+    Company findByCompanyId(Long companyId);
+
+    void updateCompany(Company company);
 }
