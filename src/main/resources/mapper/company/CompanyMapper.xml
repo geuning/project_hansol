@@ -17,4 +17,16 @@
         values(NOW(), NOW(), #{companyName}, 0)
     </insert>
 
+    <select id="findByCompanyId" resultType="com.example.project_hansol.domain.company.model.Company">
+        select *
+        from   company
+        where  company_id = #{companyId}
+    </select>
+
+    <update id="updateCompany">
+        update company
+        set   update_time = NOW(), company_name = #{companyName}
+        where company_id = #{companyId}
+    </update>
+
 </mapper>

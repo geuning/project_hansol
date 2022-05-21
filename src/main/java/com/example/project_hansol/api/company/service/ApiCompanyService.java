@@ -2,6 +2,7 @@ package com.example.project_hansol.api.company.service;
 
 import com.example.project_hansol.api.company.dto.CompanyRegisterRequestDto;
 import com.example.project_hansol.api.company.dto.CompanySearchResponseDto;
+import com.example.project_hansol.api.company.dto.CompanyUpdateRequestDto;
 import com.example.project_hansol.domain.company.model.Company;
 import com.example.project_hansol.domain.company.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,16 @@ public class ApiCompanyService {
                 .collect(Collectors.toList());
     }
 
-    public void registerCompany(CompanyRegisterRequestDto request){
-        Company company = request.toEntity();
+    public void registerCompany(CompanyRegisterRequestDto requestDto){
+        Company company = requestDto.toEntity();
         companyService.registerCompany(company);
+    }
+
+    public void updateCompany(Long companyId, CompanyUpdateRequestDto requestDto){
+        Company company = companyService.findByCompanyId(companyId);
+        Company changeCompany = requestDto.toEntity();
+        changeCompany.setCompanyId(company.getCompanyId());
+        companyService.updateCompany(changeCompany);
     }
 
 

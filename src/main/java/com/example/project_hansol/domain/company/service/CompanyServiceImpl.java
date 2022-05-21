@@ -24,4 +24,14 @@ public class CompanyServiceImpl implements CompanyService {
     public void registerCompany(Company company){
         companyMapper.registerCompany(company);
     }
+
+    @Override
+    public Company findByCompanyId(Long companyId){
+        return companyMapper.findByCompanyId(companyId);
+    }
+
+    @Override
+    public void updateCompany(Company company){
+        companyMapper.updateCompany(company);
+    }
 }

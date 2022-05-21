@@ -25,4 +25,7 @@ public class Company extends BaseModel {
     }
 
 
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.project_hansol.api.company.controller;
 
 import com.example.project_hansol.api.company.dto.CompanyRegisterRequestDto;
 import com.example.project_hansol.api.company.dto.CompanySearchResponseDto;
+import com.example.project_hansol.api.company.dto.CompanyUpdateRequestDto;
 import com.example.project_hansol.api.company.service.ApiCompanyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,9 +30,16 @@ public class ApiCompanyController {
 
     @Operation(summary = "회사 정보 등록", description = "회사 정보를 등록합니다.")
     @PostMapping
-    public String registerCompany(@RequestBody CompanyRegisterRequestDto request){
-        apiCompanyService.registerCompany(request);
-        return "success";
+    public String registerCompany(@RequestBody CompanyRegisterRequestDto requestDto){
+        apiCompanyService.registerCompany(requestDto);
+        return "registration success";
+    }
+
+    @Operation(summary = "회사 정보 수정", description = "회사 정보를 수정합니다.")
+    @PatchMapping("/{companyId}")
+    public String updateCompany(@PathVariable Long companyId, @RequestBody CompanyUpdateRequestDto requestDto){
+        apiCompanyService.updateCompany(companyId, requestDto);
+        return "update success";
     }
 
 
