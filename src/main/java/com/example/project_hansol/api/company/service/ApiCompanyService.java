@@ -38,5 +38,8 @@ public class ApiCompanyService {
     }
 
 
-
+    public void deleteCompany(Long companyId) {
+        Company company = companyService.findByCompanyId(companyId);
+        companyService.deleteCompany(company);
+    }
 }

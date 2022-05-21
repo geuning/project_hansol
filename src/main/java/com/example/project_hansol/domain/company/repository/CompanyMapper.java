@@ -15,4 +15,6 @@ public interface CompanyMapper {
     Company findByCompanyId(Long companyId);
 
     void updateCompany(Company company);
+
+    void deleteCompany(Company company);
 }
