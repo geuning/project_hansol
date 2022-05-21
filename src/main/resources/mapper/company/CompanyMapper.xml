@@ -29,4 +29,10 @@
         where company_id = #{companyId}
     </update>
 
+    <update id="deleteCompany">
+        update company
+        set   update_time = NOW(), is_deleted = '1'
+        where company_id = #{companyId}
+    </update>
+
 </mapper>

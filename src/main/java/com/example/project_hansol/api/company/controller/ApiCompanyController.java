@@ -42,5 +42,12 @@ public class ApiCompanyController {
         return "update success";
     }
 
+    @Operation(summary = "회사 정보 삭제", description = "회사 정보를 삭제합니다.")
+    @DeleteMapping("/{companyId}")
+    public String deleteCompany(@PathVariable Long companyId){
+        apiCompanyService.deleteCompany(companyId);
+        return "delete success";
+    }
+
 
 }

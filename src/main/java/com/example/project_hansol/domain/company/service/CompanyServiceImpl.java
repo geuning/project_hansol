@@ -34,4 +34,9 @@ public class CompanyServiceImpl implements CompanyService {
     public void updateCompany(Company company){
         companyMapper.updateCompany(company);
     }
+
+    @Override
+    public void deleteCompany(Company company){
+        companyMapper.deleteCompany(company);
+    }
 }
