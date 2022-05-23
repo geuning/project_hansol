@@ -3,12 +3,12 @@ package com.example.project_hansol.domain.emp.service;
 
 import com.example.project_hansol.domain.emp.model.Emp;
 import com.example.project_hansol.domain.emp.repository.EmpMapper;
-import com.example.project_hansol.domain.job.model.Job;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class EmpServiceImpl implements EmpService{
     }
 
     @Override
-    public Emp findByEmpId(Long empId){
+    public Optional<Emp> findByEmpId(Long empId){
         return empMapper.findByEmpId(empId);
     }
 

@@ -4,6 +4,7 @@ import com.example.project_hansol.domain.job.model.Job;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface JobMapper {
@@ -11,7 +12,7 @@ public interface JobMapper {
 
     void registerJob(Job job);
 
-    Job findByJobId(Long jobId);
+    Optional<Job> findByJobId(Long jobId);
 
     void updateJob(Job job);
 

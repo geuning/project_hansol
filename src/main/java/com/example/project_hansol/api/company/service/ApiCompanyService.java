@@ -5,6 +5,8 @@ import com.example.project_hansol.api.company.dto.CompanySearchResponseDto;
 import com.example.project_hansol.api.company.dto.CompanyUpdateRequestDto;
 import com.example.project_hansol.domain.company.model.Company;
 import com.example.project_hansol.domain.company.service.CompanyService;
+import com.example.project_hansol.global.error.exception.ErrorCode;
+import com.example.project_hansol.global.error.exception.ModelNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +33,8 @@ public class ApiCompanyService {
     }
 
     public void updateCompany(Long companyId, CompanyUpdateRequestDto requestDto){
-        Company company = companyService.findByCompanyId(companyId);
+        Company company = companyService.findByCompanyId(companyId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.COMPANY_NOT_EXIST));
         Company changeCompany = requestDto.toEntity();
         changeCompany.setCompanyId(company.getCompanyId());
         companyService.updateCompany(changeCompany);
@@ -39,7 +42,8 @@ public class ApiCompanyService {
 
 
     public void deleteCompany(Long companyId) {
-        Company company = companyService.findByCompanyId(companyId);
+        Company company = companyService.findByCompanyId(companyId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.COMPANY_NOT_EXIST));
         companyService.deleteCompany(company);
     }
 }

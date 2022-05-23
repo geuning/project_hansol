@@ -9,6 +9,8 @@ import com.example.project_hansol.domain.job.model.Job;
 import com.example.project_hansol.domain.job.service.JobService;
 import com.example.project_hansol.domain.work.model.Work;
 import com.example.project_hansol.domain.work.service.WorkService;
+import com.example.project_hansol.global.error.exception.ErrorCode;
+import com.example.project_hansol.global.error.exception.ModelNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,14 +43,16 @@ public class ApiEmpService {
     }
 
     public void updateEmp(Long empId, EmpUpdateRequestDto requestDto){
-        Emp emp = empService.findByEmpId(empId);
+        Emp emp = empService.findByEmpId(empId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.EMP_NOT_EXIST));
         Emp changeEmp = requestDto.toEntity();
         changeEmp.setEmpId(emp.getEmpId());
         empService.updateEmp(changeEmp);
     }
 
     public void deleteEmp(Long empId) {
-        Emp emp = empService.findByEmpId(empId);
+        Emp emp = empService.findByEmpId(empId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.EMP_NOT_EXIST));
         empService.deleteEmp(emp);
     }
 

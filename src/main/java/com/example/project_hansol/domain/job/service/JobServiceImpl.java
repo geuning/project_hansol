@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class JobServiceImpl implements JobService{
     }
 
     @Override
-    public Job findByJobId(Long jobId){
+    public Optional<Job> findByJobId(Long jobId){
         return jobMapper.findByJobId(jobId);
     }
 
