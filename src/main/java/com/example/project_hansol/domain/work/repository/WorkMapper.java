@@ -21,5 +21,9 @@ public interface WorkMapper {
 
     Optional<Work> findByWorkCode(String workCode);
 
+    Work findByWorkCodeWithIsDeleted(String workCode);
+
+    void isTrueWork(Work work);
+
 
 }

@@ -26,7 +26,13 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void registerCompany(Company company){
         validateRegisterCompany(company);
-        companyMapper.registerCompany(company);
+        Company checkCompany = companyMapper.findByCompanyNameWithIsDeleted(company.getCompanyName());
+        if(checkCompany != null && checkCompany.getIsDeleted()){
+            checkCompany.updateIsDeleted(false);
+            companyMapper.isTrueCompany(checkCompany);
+        } else {
+            companyMapper.registerCompany(company);
+        }
     }
 
     @Override

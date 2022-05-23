@@ -12,4 +12,8 @@ public abstract class BaseModel {
     private LocalDateTime updateTime;
     private Boolean isDeleted;
 
+    public void updateIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
 }

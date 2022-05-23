@@ -26,15 +26,15 @@
 
     <update id="updateWork">
         update work
-        set   update_time = NOW(), work_code = #{workCode}, work_title = #{workTitle}
-        where work_id = #{workId}
+        set    update_time = NOW(), work_code = #{workCode}, work_title = #{workTitle}
+        where  work_id = #{workId}
         and    is_deleted = '0'
     </update>
 
     <update id="deleteWork">
         update work
-        set   update_time = NOW(), is_deleted = '1'
-        where work_id = #{workId}
+        set    update_time = NOW(), is_deleted = '1'
+        where  work_id = #{workId}
     </update>
 
     <select id="findByWorkCode" resultType="com.example.project_hansol.domain.work.model.Work">
@@ -43,6 +43,18 @@
         where  work_code = #{workCode}
         and    is_deleted = '0'
     </select>
+
+    <select id="findByWorkCodeWithIsDeleted" resultType="com.example.project_hansol.domain.work.model.Work">
+        select *
+        from   work
+        where  work_code = #{workCode}
+    </select>
+
+    <update id="isTrueWork">
+        update work
+        set    update_time = NOW(), is_deleted = '0'
+        where  work_id = #{workId}
+    </update>
 
 
 </mapper>
