@@ -4,6 +4,7 @@ import com.example.project_hansol.domain.emp.model.Emp;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface EmpMapper {
@@ -11,7 +12,7 @@ public interface EmpMapper {
 
     void registerEmp(Emp emp);
 
-    Emp findByEmpId(Long empId);
+    Optional<Emp> findByEmpId(Long empId);
 
     void updateEmp(Emp emp);
 

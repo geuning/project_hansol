@@ -3,6 +3,7 @@ package com.example.project_hansol.domain.work.service;
 import com.example.project_hansol.domain.work.model.Work;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface WorkService {
 
@@ -10,7 +11,7 @@ public interface WorkService {
 
     void registerWork(Work work);
 
-    Work findByWorkId(Long workId);
+    Optional<Work> findByWorkId(Long workId);
 
     void updateWork(Work work);
 

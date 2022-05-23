@@ -5,6 +5,8 @@ import com.example.project_hansol.api.job.dto.JobSearchResponseDto;
 import com.example.project_hansol.api.job.dto.JobUpdateRequestDto;
 import com.example.project_hansol.domain.job.model.Job;
 import com.example.project_hansol.domain.job.service.JobService;
+import com.example.project_hansol.global.error.exception.ErrorCode;
+import com.example.project_hansol.global.error.exception.ModelNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,14 +33,16 @@ public class ApiJobService {
     }
 
     public void updateJob(Long jobId, JobUpdateRequestDto requestDto){
-        Job job = jobService.findByJobId(jobId);
+        Job job = jobService.findByJobId(jobId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.JOB_NOT_EXIST));
         Job changeJob = requestDto.toEntity();
         changeJob.setJobId(job.getJobId());
         jobService.updateJob(changeJob);
     }
 
     public void deleteJob(Long jobId) {
-        Job job = jobService.findByJobId(jobId);
+        Job job = jobService.findByJobId(jobId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.JOB_NOT_EXIST));
         jobService.deleteJob(job);
     }
 

@@ -4,6 +4,7 @@ import com.example.project_hansol.domain.work.model.Work;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface WorkMapper {
@@ -12,7 +13,7 @@ public interface WorkMapper {
 
     void registerWork(Work work);
 
-    Work findByWorkId(Long workId);
+    Optional<Work> findByWorkId(Long workId);
 
     void updateWork(Work work);
 
