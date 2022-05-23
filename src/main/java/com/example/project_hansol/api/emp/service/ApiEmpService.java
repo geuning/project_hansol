@@ -36,8 +36,10 @@ public class ApiEmpService {
     public void registerEmp(EmpRegisterRequestDto requestDto){
         String workCode = requestDto.getWorkCode();
         String jobPosition = requestDto.getJobPosition();
-        Work work = workService.findByWorkCode(workCode);
-        Job job = jobService.findByJobPosition(jobPosition);
+        Work work = workService.findByWorkCode(workCode)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.WORK_NOT_EXIST));
+        Job job = jobService.findByJobPosition(jobPosition)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.JOB_NOT_EXIST));
         Emp emp = requestDto.toEntity(work, job);
         empService.registerEmp(emp);
     }

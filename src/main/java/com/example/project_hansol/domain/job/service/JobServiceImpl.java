@@ -3,6 +3,7 @@ package com.example.project_hansol.domain.job.service;
 
 import com.example.project_hansol.domain.job.model.Job;
 import com.example.project_hansol.domain.job.repository.JobMapper;
+import com.example.project_hansol.domain.job.validator.JobValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class JobServiceImpl implements JobService{
 
     private final JobMapper jobMapper;
+    private final JobValidator jobValidator;
 
     @Override
     public List<Job> findAllJobsWithJobPosition(String jobPosition){
@@ -24,6 +26,7 @@ public class JobServiceImpl implements JobService{
 
     @Override
     public void registerJob(Job job){
+        validateRegisterJob(job);
         jobMapper.registerJob(job);
     }
 
@@ -43,8 +46,13 @@ public class JobServiceImpl implements JobService{
     }
 
     @Override
-    public Job findByJobPosition(String jobPosition){
+    public Optional<Job> findByJobPosition(String jobPosition){
         return jobMapper.findByJobPosition(jobPosition);
+    }
+
+    public void validateRegisterJob(Job job){
+        jobValidator.validateDuplicateJob(job.getJobPosition());
+
     }
 
 }

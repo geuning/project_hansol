@@ -18,6 +18,6 @@ public interface JobMapper {
 
     void deleteJob(Job job);
 
-    Job findByJobPosition(String jobPosition);
+    Optional<Job> findByJobPosition(String jobPosition);
 
 }
