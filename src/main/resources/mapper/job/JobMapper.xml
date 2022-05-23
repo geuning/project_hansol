@@ -33,8 +33,8 @@
 
     <update id="deleteJob">
         update job
-        set   update_time = NOW(), is_deleted = '1'
-        where job_id = #{jobId}
+        set    update_time = NOW(), is_deleted = '1'
+        where  job_id = #{jobId}
     </update>
 
     <select id="findByJobPosition" resultType="com.example.project_hansol.domain.job.model.Job">
@@ -43,6 +43,18 @@
         where  job_position = #{jobPosition}
         and    is_deleted = '0'
     </select>
+
+    <select id="findByJobPositionWithIsDeleted" resultType="com.example.project_hansol.domain.job.model.Job">
+        select *
+        from   job
+        where  job_position = #{jobPosition}
+    </select>
+
+    <update id="isTrueJob">
+        update job
+        set    update_time = NOW(), is_deleted = '0'
+        where  job_id = #{jobId}
+    </update>
 
 
 

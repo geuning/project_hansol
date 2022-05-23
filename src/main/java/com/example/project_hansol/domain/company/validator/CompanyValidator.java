@@ -22,7 +22,5 @@ public class CompanyValidator {
         if(optionalComapny.isPresent()){
             throw new BusinessException(ErrorCode.ALREADY_REGISTERD_COMPANY);
         }
-
-
     }
 }
