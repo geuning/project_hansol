@@ -18,4 +18,7 @@ public interface CompanyMapper {
     void updateCompany(Company company);
 
     void deleteCompany(Company company);
+
+    Optional<Company> findByCompanyName(String companyName);
+
 }
