@@ -3,6 +3,7 @@ package com.example.project_hansol.domain.work.service;
 
 import com.example.project_hansol.domain.work.model.Work;
 import com.example.project_hansol.domain.work.repository.WorkMapper;
+import com.example.project_hansol.domain.work.validator.WorkValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class WorkServiceImpl implements WorkService {
 
     private final WorkMapper workMapper;
+    private final WorkValidator workValidator;
 
     @Override
     public List<Work> findAllWorksWithWorkCode(String workCode){
@@ -24,6 +26,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public void registerWork(Work work){
+        validateRegisterWork(work);
         workMapper.registerWork(work);
     }
 
@@ -43,8 +46,12 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public Work findByWorkCode(String workCode){
+    public Optional<Work> findByWorkCode(String workCode){
         return workMapper.findByWorkCode(workCode);
+    }
+
+    public void validateRegisterWork(Work work){
+        workValidator.validateDuplicateWork(work.getWorkCode());
     }
 
 

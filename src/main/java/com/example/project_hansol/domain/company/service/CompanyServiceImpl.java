@@ -2,6 +2,7 @@ package com.example.project_hansol.domain.company.service;
 
 import com.example.project_hansol.domain.company.model.Company;
 import com.example.project_hansol.domain.company.repository.CompanyMapper;
+import com.example.project_hansol.domain.company.validator.CompanyValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyMapper companyMapper;
+    private final CompanyValidator companyValidator;
 
     @Override
     public List<Company> findAllCompaniesWithCompanyName(String companyName){
@@ -23,6 +25,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void registerCompany(Company company){
+        validateRegisterCompany(company);
         companyMapper.registerCompany(company);
     }
 
@@ -39,5 +42,9 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void deleteCompany(Company company){
         companyMapper.deleteCompany(company);
+    }
+
+    public void validateRegisterCompany(Company company){
+        companyValidator.validateDuplicateCompany(company.getCompanyName());
     }
 }
