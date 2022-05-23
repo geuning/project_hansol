@@ -4,6 +4,7 @@ import com.example.project_hansol.domain.company.model.Company;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface CompanyMapper {
@@ -12,7 +13,7 @@ public interface CompanyMapper {
 
     void registerCompany(Company company);
 
-    Company findByCompanyId(Long companyId);
+    Optional<Company> findByCompanyId(Long companyId);
 
     void updateCompany(Company company);
 

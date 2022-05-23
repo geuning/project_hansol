@@ -6,6 +6,8 @@ import com.example.project_hansol.api.work.dto.WorkSearchResponseDto;
 import com.example.project_hansol.api.work.dto.WorkUpdateRequestDto;
 import com.example.project_hansol.domain.work.model.Work;
 import com.example.project_hansol.domain.work.service.WorkService;
+import com.example.project_hansol.global.error.exception.ErrorCode;
+import com.example.project_hansol.global.error.exception.ModelNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,14 +34,16 @@ public class ApiWorkService {
     }
 
     public void updateWork(Long workId, WorkUpdateRequestDto requestDto){
-        Work work = workService.findByWorkId(workId);
+        Work work = workService.findByWorkId(workId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.WORK_NOT_EXIST));
         Work changeWork = requestDto.toEntity();
         changeWork.setWorkId(work.getWorkId());
         workService.updateWork(changeWork);
     }
 
     public void deleteWork(Long workId) {
-        Work work = workService.findByWorkId(workId);
+        Work work = workService.findByWorkId(workId)
+                .orElseThrow(() -> new ModelNotFoundException(ErrorCode.WORK_NOT_EXIST));
         workService.deleteWork(work);
     }
 }
