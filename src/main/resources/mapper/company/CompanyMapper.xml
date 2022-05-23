@@ -26,15 +26,15 @@
 
     <update id="updateCompany">
         update company
-        set   update_time = NOW(), company_name = #{companyName}
-        where company_id = #{companyId}
-        and   is_deleted = '0'
+        set    update_time = NOW(), company_name = #{companyName}
+        where  company_id = #{companyId}
+        and    is_deleted = '0'
     </update>
 
     <update id="deleteCompany">
         update company
-        set   update_time = NOW(), is_deleted = '1'
-        where company_id = #{companyId}
+        set    update_time = NOW(), is_deleted = '1'
+        where  company_id = #{companyId}
     </update>
 
     <select id="findByCompanyName" resultType="com.example.project_hansol.domain.company.model.Company">
@@ -44,5 +44,16 @@
         and    is_deleted = '0'
     </select>
 
+    <select id="findByCompanyNameWithIsDeleted" resultType="com.example.project_hansol.domain.company.model.Company">
+        select *
+        from   company
+        where  company_name = #{companyName}
+    </select>
+
+    <update id="isTrueCompany">
+        update company
+        set    update_time = NOW(), is_deleted = '0'
+        where  company_id = #{companyId}
+    </update>
 
 </mapper>

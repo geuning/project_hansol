@@ -27,7 +27,13 @@ public class JobServiceImpl implements JobService{
     @Override
     public void registerJob(Job job){
         validateRegisterJob(job);
-        jobMapper.registerJob(job);
+        Job checkJob = jobMapper.findByJobPositionWithIsDeleted(job.getJobPosition());
+        if(checkJob != null && checkJob.getIsDeleted()){
+            checkJob.updateIsDeleted(false);
+            jobMapper.isTrueJob(checkJob);
+        } else {
+            jobMapper.registerJob(job);
+        }
     }
 
     @Override

@@ -20,4 +20,8 @@ public interface JobMapper {
 
     Optional<Job> findByJobPosition(String jobPosition);
 
+    Job findByJobPositionWithIsDeleted(String jobPosition);
+
+    void isTrueJob(Job job);
+
 }

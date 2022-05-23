@@ -27,7 +27,13 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public void registerWork(Work work){
         validateRegisterWork(work);
-        workMapper.registerWork(work);
+        Work checkWork = workMapper.findByWorkCodeWithIsDeleted(work.getWorkCode());
+        if(checkWork != null && checkWork.getIsDeleted()){
+            checkWork.updateIsDeleted(false);
+            workMapper.isTrueWork(checkWork);
+        } else {
+            workMapper.registerWork(work);
+        }
     }
 
     @Override

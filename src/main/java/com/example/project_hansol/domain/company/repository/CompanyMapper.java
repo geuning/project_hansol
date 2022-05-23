@@ -21,4 +21,8 @@ public interface CompanyMapper {
 
     Optional<Company> findByCompanyName(String companyName);
 
+    Company findByCompanyNameWithIsDeleted(String companyName);
+
+    void isTrueCompany(Company company);
+
 }
